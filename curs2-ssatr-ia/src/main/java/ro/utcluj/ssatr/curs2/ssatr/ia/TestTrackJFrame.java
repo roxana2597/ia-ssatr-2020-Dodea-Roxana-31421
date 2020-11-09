@@ -167,7 +167,7 @@ public class TestTrackJFrame extends javax.swing.JFrame {
         if(type.equals("Electric car")){
             ElectricCar c = new ElectricCar(name, speed);
             track.addCar(c);
-            jTextArea1.append("New electric car added.\n");
+            jTextArea1.append("New electric car added!\n");
         }else if (type.equals("Diesel car")){
             DieselCar c = new DieselCar(name, speed);
             track.addCar(c);            

@@ -49,6 +49,7 @@ public class TestCar {
         Car x1 = new DieselCar("Dacia",1);
         x1.accelerate();
         
-        
+        OttoCar o1 = new OttoCar("Otto",1);
+        o1.accelerate();
     }
 }
