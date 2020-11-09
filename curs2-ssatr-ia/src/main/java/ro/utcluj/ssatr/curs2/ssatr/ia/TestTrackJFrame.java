@@ -36,6 +36,8 @@ public class TestTrackJFrame extends javax.swing.JFrame {
         buttonAddCar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         comboCarType = new javax.swing.JComboBox<String>();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -47,6 +49,12 @@ public class TestTrackJFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Car"));
 
         jLabel1.setText("Name");
+
+        testFieldName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testFieldNameActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Speed");
 
@@ -66,6 +74,14 @@ public class TestTrackJFrame extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Plate Number");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,20 +90,31 @@ public class TestTrackJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(21, 21, 21)
-                        .addComponent(testFieldName))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonAddCar)
-                            .addComponent(testFieldSpeed)
-                            .addComponent(comboCarType, 0, 167, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(testFieldName))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(52, 52, 52)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(buttonAddCar)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(testFieldSpeed)
+                                            .addComponent(comboCarType, 0, 167, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1)
+                        .addGap(23, 23, 23))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +130,13 @@ public class TestTrackJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(comboCarType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(buttonAddCar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Test Cars"));
@@ -168,19 +199,19 @@ public class TestTrackJFrame extends javax.swing.JFrame {
         String name = this.testFieldName.getText();
         int speed = Integer.parseInt(this.testFieldSpeed.getText());
         String type = this.comboCarType.getSelectedItem().toString();
-               
+        String plateNumber = this.testFieldName.getText();      
         if(type.equals("Electric car")){
-            ElectricCar c = new ElectricCar(name, speed);
+            ElectricCar c = new ElectricCar(name, speed,plateNumber);
             track.addCar(c);
             jTextArea1.append("New electric car added!\n");
         }else if (type.equals("Diesel car")){
-            DieselCar c = new DieselCar(name, speed);
+            DieselCar c = new DieselCar(name, speed,plateNumber);
             track.addCar(c);            
             jTextArea1.append("New diesel car added.\n");
         }else if (type.equals("Otto car")){
-            OttoCar c = new OttoCar(name, speed);
+            OttoCar c = new OttoCar(name, speed, plateNumber);
             track.addCar(c);            
-            jTextArea1.append("New diesel car added.\n");
+            jTextArea1.append("New Otto car added.\n");
         }else{
             jTextArea1.append("Car type unknown.\n");
         }
@@ -196,6 +227,14 @@ public class TestTrackJFrame extends javax.swing.JFrame {
     private void comboCarTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCarTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCarTypeActionPerformed
+
+    private void testFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testFieldNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_testFieldNameActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,10 +278,12 @@ public class TestTrackJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField testFieldName;
     private javax.swing.JTextField testFieldSpeed;
     // End of variables declaration//GEN-END:variables
